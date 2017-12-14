@@ -25,7 +25,7 @@ export default class PigCard extends React.Component {
     });
   };
 
-  hideCard = () => {
+  toggleCard = () => {
     this.setState(prevState => {
       return { hideMe: !prevState.hideMe };
     });
@@ -34,20 +34,28 @@ export default class PigCard extends React.Component {
   render() {
     const pigs = this.props.thisPig;
     const myState = this.state;
+    const faceOrDetail =
+      myState.showDetail === false ? (
+        <PigFace
+          pigs={pigs}
+          showDetail={this.showDetail}
+          convertName={this.convertName}
+          toggleCard={this.toggleCard}
+        />
+      ) : (
+        <PigDetail
+          pigs={pigs}
+          showDetail={this.showDetail}
+          convertName={this.convertName}
+          toggleCard={this.toggleCard}
+        />
+      );
     return (
       <div className="four wide column">
-        {this.state.showDetail === false ? (
-          <PigFace
-            pigs={pigs}
-            showDetail={this.showDetail}
-            convertName={this.convertName}
-          />
+        {this.state.hideMe === false ? (
+          faceOrDetail
         ) : (
-          <PigDetail
-            pigs={pigs}
-            showDetail={this.showDetail}
-            convertName={this.convertName}
-          />
+          <button onClick={this.toggleCard}> ShowMe! </button>
         )}
       </div>
     );

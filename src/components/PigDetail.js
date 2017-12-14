@@ -18,6 +18,9 @@ const PigDetail = props => {
         <p>{props.pigs[weight]} times heavier than a fridge</p>
         <p />
       </div>
+      <button onClick={props.toggleCard} className="bottom attached button">
+        <i className="remove icon" />
+      </button>
     </div>
   );
 };

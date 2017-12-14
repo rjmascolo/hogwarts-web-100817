@@ -13,7 +13,10 @@ export default class PigFace extends React.Component {
         <div className="content">
           <a className="header">{this.props.pigs.name}</a>
         </div>
-        <button className="bottom attached button">
+        <button
+          onClick={this.props.toggleCard}
+          className="bottom attached button"
+        >
           <i className="remove icon" />
         </button>
       </div>
