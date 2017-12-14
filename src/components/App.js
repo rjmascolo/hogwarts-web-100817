@@ -39,7 +39,7 @@ class App extends Component {
           filterGreasy={this.handleGreasy}
           changeFilter={this.changeFilter}
         />
-        <PigList pigList={pigs} filterBy={this.state.filter} />
+        <PigList pigList={pigs} filterBy={this.state.filter} isGreasy={this.state.isGreasy} />
       </div>
     );
   }
