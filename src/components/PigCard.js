@@ -1,6 +1,17 @@
 import React from 'react';
+import PigDetail from './PigDetail';
+import PigFace from './PigFace';
 
 export default class PigCard extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      showDetail: false,
+      hideMe: false
+    };
+  }
+
   convertName = () => {
     return this.props.thisPig.name
       .toLowerCase()
@@ -8,18 +19,36 @@ export default class PigCard extends React.Component {
       .join('_');
   };
 
+  showDetail = () => {
+    this.setState(prevState => {
+      return { showDetail: !prevState.showDetail };
+    });
+  };
+
+  hideCard = () => {
+    this.setState(prevState => {
+      return { hideMe: !prevState.hideMe };
+    });
+  };
+
   render() {
     const pigs = this.props.thisPig;
+    const myState = this.state;
     return (
-      <div>
-        <h4>{pigs.name}</h4>
-        <img
-          src={require('../hog-imgs/' + this.convertName() + '.jpg')}
-          alt="a sturdy pig"
-        />
-        <p>Specialty: {pigs.specialty}</p>
-        <p>Highest Medal Achieved: {pigs['highest medal achieved']}</p>
-        <p />
+      <div className="four wide column">
+        {this.state.showDetail === false ? (
+          <PigFace
+            pigs={pigs}
+            showDetail={this.showDetail}
+            convertName={this.convertName}
+          />
+        ) : (
+          <PigDetail
+            pigs={pigs}
+            showDetail={this.showDetail}
+            convertName={this.convertName}
+          />
+        )}
       </div>
     );
   }

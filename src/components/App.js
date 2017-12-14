@@ -29,7 +29,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
     const pigs = this.state.pigs;
     return (
       <div className="App">
@@ -39,7 +38,11 @@ class App extends Component {
           filterGreasy={this.handleGreasy}
           changeFilter={this.changeFilter}
         />
-        <PigList pigList={pigs} filterBy={this.state.filter} isGreasy={this.state.isGreasy} />
+        <PigList
+          pigList={pigs}
+          filterBy={this.state.filter}
+          isGreasy={this.state.isGreasy}
+        />
       </div>
     );
   }
